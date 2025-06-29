@@ -4,24 +4,19 @@ An interactive, responsive, and sound-enhanced **Tic Tac Toe** game built using 
 
 ---
 
-## 📁 Folder Structure
+## 📁 File Structure
 
 ```
-📁 PRODIGY_WD_03_TicTacToe
 ├── index.html       ✅ Welcome screen with theme toggle and intro audio
 ├── game.html        ✅ Main game board with result modal and sound effects
 ├── style.css        🎨 Responsive and animated styles for all pages
 ├── script.js        ⚙️ Game logic (AI, turns, win/draw handling)
-└── assets/
-    └── audio/
-        ├── intro.mp3   🎵 Welcome screen music
-        ├── click.mp3   🎵 Click sound
-        ├── move.mp3    🎵 Move placement sound
-        ├── win.mp3     🎵 Victory sound
-        └── draw.mp3    🎵 Draw game sound
+├── intro.mp3   🎵 Welcome screen music
+├── click.mp3   🎵 Click sound
+├── move.mp3    🎵 Move placement sound
+├── win.mp3     🎵 Victory sound
+└── draw.mp3    🎵 Draw game sound
 ```
-
----
 
 ## 💡 Features
 
@@ -61,10 +56,4 @@ This project was created as part of the **PRODIGY INFOTECH Web Development Inter
 
 ## 🔗 Live Demo (Optional)
 
-[🔗 View Live on GitHub Pages](https://your-username.github.io/PRODIGY_WD_03_TicTacToe)
-
----
-
-## 🛠️ License
-
-Licensed under the [MIT License](https://opensource.org/licenses/MIT).
+https://anushkamidda.github.io/PRODIGY_WD_03/
