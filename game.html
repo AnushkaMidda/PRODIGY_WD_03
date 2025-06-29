@@ -3,67 +3,79 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tic Tac Toe Game</title>
+  <meta name="theme-color" content="#0a0a20" />
+  <title>Welcome | Tic Tac Toe</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="game-screen">
+<body class="welcome-screen">
 
-  <!-- Animated Background -->
-  <div class="animated-bg"></div>
-  <div class="bg-shape one"></div>
-  <div class="bg-shape two"></div>
-  <div class="bg-shape three"></div>
-
-  <!-- Game Blur Wrapper -->
-  <div id="blur-wrapper" class="blur-wrapper">
-
-    <!-- Game Container -->
-    <div class="game-container">
-      <h1 class="game-title">Tic Tac Toe</h1>
-
-      <!-- Board Grid -->
-      <div class="game-board" id="game-board">
-        <!-- JS will dynamically fill this -->
-      </div>
-
-      <!-- Game Status and Controls -->
-      <div class="game-info">
-        <p id="status-text">Your Turn (❌)</p>
-        <button class="btn" onclick="restartGame()">🔄 Restart</button>
-        <a href="index.html" class="btn back-btn">⬅ Back to Welcome</a>
-      </div>
-    </div>
-
+  <!-- Background Animation -->
+  <div class="particles-bg">
+    <div class="circle one"></div>
+    <div class="circle two"></div>
+    <div class="circle three"></div>
   </div>
 
-  <!-- Result Modal -->
-  <div id="result-modal" class="modal hidden">
-    <div class="modal-content">
-      <p id="result-message"></p>
-      <button class="btn" onclick="restartGame()">Play Again</button>
-      <a href="index.html" class="btn back-btn">⬅ Home</a>
-      <button class="btn" onclick="exitGame()">🚪 Exit</button>
+  <!-- Intro Music -->
+  <audio id="intro-audio" preload="auto">
+    <source src="assets/audio/intro.mp3" type="audio/mpeg" />
+    <p>Your browser doesn't support HTML5 audio. Please update your browser.</p>
+  </audio>
+
+  <!-- Welcome Section -->
+  <div class="welcome-container">
+    <h1 class="welcome-title">🎮 Welcome to Tic Tac Toe</h1>
+    <p class="welcome-text">Ready to test your strategy?</p>
+
+    <button onclick="startGame()" class="btn">Start Game</button>
+
+    <div class="theme-toggle">
+      <label class="switch">
+        <input type="checkbox" id="theme-switch">
+        <span class="slider round"></span>
+      </label>
+      <span>🌙 Dark Mode</span>
     </div>
   </div>
 
-  <!-- Exit Confirmation Modal -->
-  <div id="exit-modal" class="modal hidden">
-    <div class="modal-content">
-      <h2>Are you sure you want to exit?</h2>
-      <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
-        <button class="btn" onclick="confirmExit(true)">Yes</button>
-        <button class="btn back-btn" onclick="confirmExit(false)">No</button>
-      </div>
-    </div>
-  </div>
+  <script>
+    const introAudio = document.getElementById("intro-audio");
+    let hasPlayed = false;
 
-  <!-- Sound Effects -->
-  <audio id="click-sound" src="assets/audio/click.mp3" preload="auto"></audio>
-  <audio id="move-sound" src="assets/audio/move.mp3" preload="auto"></audio>
-  <audio id="win-sound" src="assets/audio/win.mp3" preload="auto"></audio>
-  <audio id="draw-sound" src="assets/audio/draw.mp3" preload="auto"></audio>
+    function tryPlayAudioOnce() {
+      if (!hasPlayed) {
+        introAudio.play().then(() => {
+          hasPlayed = true;
+        }).catch((err) => {
+          console.warn("Autoplay blocked:", err);
+        });
+      }
+    }
 
-  <!-- Game Logic -->
-  <script src="script.js"></script>
+    // Prepare audio
+    window.addEventListener("load", () => {
+      introAudio.load();
+    });
+
+    // Trigger play on first interaction
+    window.addEventListener("click", tryPlayAudioOnce);
+    window.addEventListener("keydown", tryPlayAudioOnce);
+
+    // Theme toggle
+    document.getElementById("theme-switch").addEventListener("change", () => {
+      document.body.classList.toggle("light-theme");
+    });
+
+    function startGame() {
+      introAudio.pause();
+      window.location.href = "game.html";
+    }
+  </script>
+
 </body>
 </html>
