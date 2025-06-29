@@ -48,7 +48,7 @@ function handleMove(event) {
 
   if (gameState[index] !== "" || !gameActive || currentPlayer !== "X") return;
 
-  clickSound.play();
+  clickSound.play().catch(e => console.warn("Click sound blocked:", e));
   makeMove(index, "X");
 
   if (checkGameEnd()) return;
@@ -64,7 +64,8 @@ function makeMove(index, player) {
   gameState[index] = player;
   const cell = board.querySelector(`[data-index="${index}"]`);
   cell.textContent = player;
-  moveSound.play();
+
+  moveSound.play().catch(e => console.warn("Move sound blocked:", e));
 }
 
 // ----- AI Move -----
@@ -95,7 +96,7 @@ function checkGameEnd() {
         document.querySelector(`[data-index="${i}"]`).classList.add("win");
       });
 
-      winSound.play();
+      winSound.play().catch(e => console.warn("Win sound blocked:", e));
 
       if (typeof confetti === "function") {
         confetti({
@@ -114,7 +115,8 @@ function checkGameEnd() {
     gameActive = false;
     const drawText = "It's a Draw! 🤝";
     statusText.textContent = drawText;
-    drawSound.play();
+
+    drawSound.play().catch(e => console.warn("Draw sound blocked:", e));
     showModal(drawText);
     return true;
   }
@@ -136,7 +138,7 @@ function restartGame() {
   modal.classList.add("hidden");
   blurWrapper.classList.remove("blur");
 
-  clickSound.play();
+  clickSound.play().catch(e => console.warn("Restart sound blocked:", e));
   createBoard();
 }
 
@@ -150,11 +152,10 @@ function confirmExit(userConfirmed) {
   document.getElementById("exit-modal").classList.add("hidden");
 
   if (userConfirmed) {
-    // Try to close tab (only works if opened by script)
-    window.open('', '_self');
+    window.open("", "_self");
     window.close();
 
-    // Fallback to home page
+    // Fallback
     setTimeout(() => {
       window.location.href = "index.html";
     }, 300);
