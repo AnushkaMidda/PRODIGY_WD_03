@@ -1,0 +1,408 @@
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.welcome-title, .game-title {
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* ========== GOOGLE FONT (Add in HTML head) ==========
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+======================================================= */
+
+/* ========== Welcome Screen Styles ========== */
+.welcome-screen {
+  background: linear-gradient(135deg, #0a0a20, #1a1a40);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+  font-family: 'Orbitron', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome-container {
+  max-width: 500px;
+  width: 90%;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  text-align: center;
+  z-index: 1;
+}
+
+.welcome-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.welcome-text {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  background: linear-gradient(135deg, #ff2d75, #00f2ff);
+  border: none;
+  color: #0a0a20;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 50px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.theme-toggle {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* ========== Toggle Switch Style ========== */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+input:checked + .slider {
+  background-color: #2196F3;
+}
+input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
+/* ========== Light Theme Styles ========== */
+.light-theme {
+  background: #f0f0f0;
+  color: #111;
+}
+.light-theme .welcome-container {
+  background: rgba(0, 0, 0, 0.05);
+  color: #000;
+}
+
+/* ========== Particle Background ========= */
+.particles-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+  animation: float 10s infinite ease-in-out;
+}
+
+.circle.one {
+  width: 150px;
+  height: 150px;
+  top: 10%;
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.circle.two {
+  width: 100px;
+  height: 100px;
+  bottom: 15%;
+  left: 60%;
+  animation-delay: 2s;
+}
+
+.circle.three {
+  width: 120px;
+  height: 120px;
+  top: 50%;
+  right: 10%;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0% { transform: translateY(0) scale(1); opacity: 0.4; }
+  50% { transform: translateY(-30px) scale(1.1); opacity: 0.7; }
+  100% { transform: translateY(0) scale(1); opacity: 0.4; }
+}
+
+/* ========== Game Screen Styles ========== */
+.game-screen {
+  background: linear-gradient(to bottom right, #1f1c2c, #928dab);
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.game-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-gap: 10px;
+  margin-bottom: 20px;
+}
+
+.cell {
+  width: 100px;
+  height: 100px;
+  font-size: 2rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.cell:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.cell.win {
+  background-color: #00ff99 !important;
+  color: #000;
+  font-weight: bold;
+  box-shadow: 0 0 10px #00ffcc;
+}
+
+.game-info {
+  text-align: center;
+}
+
+.back-btn {
+  background: #444;
+}
+
+/* ========== Game Buttons ========== */
+.btn {
+  padding: 10px 20px;
+  background: linear-gradient(to right, #ff4e50, #f9d423);
+  border: none;
+  border-radius: 20px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+/* ========== Game Page Animated Background ========= */
+.animated-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+}
+
+.bg-shape {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  animation: float 15s infinite ease-in-out;
+}
+
+.bg-shape.one {
+  width: 200px;
+  height: 200px;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.bg-shape.two {
+  width: 150px;
+  height: 150px;
+  top: 60%;
+  left: 80%;
+  animation-delay: 5s;
+}
+
+.bg-shape.three {
+  width: 100px;
+  height: 100px;
+  top: 40%;
+  left: 40%;
+  animation-delay: 10s;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 768px) {
+  .game-board {
+    grid-template-columns: repeat(3, 70px);
+    grid-gap: 8px;
+  }
+
+  .cell {
+    width: 70px;
+    height: 70px;
+    font-size: 1.5rem;
+  }
+
+  .game-title {
+    font-size: 1.8rem;
+  }
+
+  .btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    margin-top: 10px;
+  }
+}
+
+/* ========== Modal Popup ========== */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.modal.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal-content {
+  background: #1f1c2c;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 0 20px #00ffc3;
+  animation: popUp 0.5s ease-out;
+}
+
+@keyframes popUp {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.modal-content h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+/* ========== Blur Effect ========== */
+.blur-wrapper.blur {
+  filter: blur(6px);
+  transition: filter 0.3s ease;
+}
+
+.modal-content .btn {
+  margin-top: 10px;
+  display: block;
+  width: 100%;
+}
+
+.modal-content .btn {
+  min-width: 100px;
+}
+
+.cell:active {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 480px) {
+  .welcome-title,
+  .game-title {
+    font-size: 1.5rem;
+  }
+
+  .welcome-text,
+  #status-text {
+    font-size: 1rem;
+  }
+}
+
+body {
+  animation: fadeIn 0.8s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@media screen and (orientation: landscape) and (max-width: 768px) {
+  .game-screen::before {
+    content: "Please rotate your device to portrait mode for best experience.";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #000000cc;
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    z-index: 1000;
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  .blur-wrapper,
+  .modal {
+    display: none !important;
+  }
+}
